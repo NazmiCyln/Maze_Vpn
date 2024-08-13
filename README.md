@@ -1,4 +1,4 @@
-# maze_vpn
+# Maze Vpn
 
 A new Flutter project.
 
