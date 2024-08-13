@@ -25,12 +25,14 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await runZonedGuarded(
     () async {
       final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-      FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
       await EasyLocalization.ensureInitialized();
 
+      FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
       SystemChrome.setSystemUIOverlayStyle(systemUiOverlayDarkStyle);
-      SystemChrome.setPreferredOrientations(
+
+      await SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
       );
 
@@ -41,6 +43,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
       HttpOverrides.global = MyHttpOverrides();
 
       appVersion = (await PackageInfo.fromPlatform()).version;
+
+      await Future.delayed(const Duration(milliseconds: 150));
 
       runApp(
         ProviderScope(

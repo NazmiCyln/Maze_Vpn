@@ -25,6 +25,8 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(homeProvider);
+
     VpnService.vpnStageSnapshot().listen((event) {
       if (event == VpnService.vpnConnected) {
         ref.read(homeProvider.notifier).connectVpnStatus();
@@ -36,8 +38,6 @@ class HomePage extends HookConsumerWidget {
         ref.read(homeProvider.notifier).connectingVpnStatus();
       }
     });
-
-    final state = ref.watch(homeProvider);
 
     ref.listen(
       homeProvider,

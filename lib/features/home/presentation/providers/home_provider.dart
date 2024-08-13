@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:fpdart/fpdart.dart';
@@ -27,10 +26,6 @@ class HomeNotifier extends AutoDisposeNotifier<HomeState> {
     await getIpDetails();
 
     await getVpnServers();
-
-    final a = await VpnService.stage();
-
-    log(a.toString());
 
     // final icConnected = await VpnService.isConnected();
 
@@ -93,9 +88,11 @@ class HomeNotifier extends AutoDisposeNotifier<HomeState> {
   }
 
   void stopTime() {
-    state.timer?.cancel();
+    if (state.timer != null) {
+      state.timer?.cancel();
 
-    state = state.copyWith(timer: null);
+      state = state.copyWith(timer: null);
+    }
   }
 
   Future<void> getVpnServers() async {
