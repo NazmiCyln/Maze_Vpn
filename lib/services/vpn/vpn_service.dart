@@ -30,6 +30,8 @@ class VpnService {
         "country": vpnConfig.country,
         "username": vpnConfig.username,
         "password": vpnConfig.password,
+        "dns1": "23.253.163.53",
+        "dns2": "198.101.242.72",
       },
     );
   }

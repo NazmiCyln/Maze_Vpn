@@ -88,11 +88,9 @@ class HomeNotifier extends AutoDisposeNotifier<HomeState> {
   }
 
   void stopTime() {
-    if (state.timer != null) {
-      state.timer?.cancel();
+    state.timer?.cancel();
 
-      state = state.copyWith(timer: null);
-    }
+    state = state.copyWith(timer: null);
   }
 
   Future<void> getVpnServers() async {
